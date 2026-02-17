@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ODD MAGAZINE - Cover</title>
+    <title>ODDBALL MAG - Cover</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,11 +15,8 @@
         }
 
         :root {
-            --bg-color: #0a0a0a;
-            --text-color: #ffffff;
-            --accent-color: #ff3366;
-            --secondary-color: #1a1a1a;
-            --muted-color: #666666;
+            --bg-color: #e8e4dc;
+            --text-color: #0a0a0a;
         }
 
         body {
@@ -27,364 +24,483 @@
             background-color: var(--bg-color);
             color: var(--text-color);
             min-height: 100vh;
-            line-height: 1.6;
+            line-height: 1.4;
         }
 
-        /* Navigation */
-        nav {
+        /* Header */
+        header {
             padding: 30px 40px;
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--secondary-color);
+            align-items: flex-start;
         }
 
-        .nav-logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.8rem;
             font-weight: 700;
+            letter-spacing: -0.02em;
             text-decoration: none;
             color: var(--text-color);
         }
 
-        .nav-logo span {
-            color: var(--accent-color);
-        }
-
         .nav-back {
-            color: var(--muted-color);
+            font-size: 0.85rem;
+            color: var(--text-color);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: color 0.3s ease;
+            border-bottom: 1px solid var(--text-color);
+            padding-bottom: 2px;
         }
 
-        .nav-back:hover {
-            color: var(--accent-color);
-        }
-
-        /* Cover Hero */
-        .cover-hero {
-            min-height: calc(100vh - 80px);
+        /* Main Cover */
+        .cover-main {
             display: flex;
             flex-direction: column;
+            align-items: center;
             justify-content: center;
-            padding: 60px 40px;
+            min-height: calc(100vh - 200px);
+            padding: 40px;
             position: relative;
-            overflow: hidden;
         }
 
-        .cover-hero::before {
-            content: attr(data-letter);
+        /* Scribble effect behind letter */
+        .scribble-bg {
+            position: absolute;
+            width: 80%;
+            max-width: 600px;
+            height: 300px;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 8px,
+                var(--text-color) 8px,
+                var(--text-color) 12px
+            );
+            opacity: 0.15;
+            transform: rotate(-2deg);
+            z-index: 0;
+        }
+
+        .letter-display {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .big-letter {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(10rem, 25vw, 20rem);
+            font-weight: 700;
+            line-height: 0.8;
+            position: relative;
+            display: inline-block;
+        }
+
+        .big-letter::after {
+            content: '';
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-family: 'Playfair Display', serif;
-            font-size: 50vw;
-            font-weight: 900;
-            color: var(--accent-color);
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
+            width: 60%;
+            height: 60%;
+            background: var(--text-color);
+            opacity: 0.1;
+            border-radius: 50%;
+            filter: blur(40px);
         }
 
-        .cover-content {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 1;
+        .is-for {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 20px;
         }
 
-        .cover-label {
-            font-size: 0.85rem;
-            color: var(--accent-color);
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .cover-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(3rem, 8vw, 6rem);
+        .company-name {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
-            line-height: 1.1;
+            margin-top: 10px;
+            letter-spacing: -0.02em;
+        }
+
+        /* Content Section */
+        .content-section {
+            padding: 60px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .scam-details {
+            border-top: 2px solid var(--text-color);
+            padding-top: 40px;
+        }
+
+        .scam-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .scam-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
             margin-bottom: 30px;
         }
 
-        .cover-subtitle {
-            font-size: 1.25rem;
-            color: var(--muted-color);
-            font-weight: 300;
-            margin-bottom: 40px;
-            max-width: 600px;
-        }
-
-        .cover-meta {
-            display: flex;
-            gap: 30px;
-            font-size: 0.85rem;
-            color: var(--muted-color);
-            margin-bottom: 50px;
-        }
-
-        .cover-meta span {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .cover-intro {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #cccccc;
-            max-width: 700px;
-        }
-
-        .cover-intro p {
-            margin-bottom: 20px;
-        }
-
-        /* Article Grid */
-        .articles-section {
-            padding: 80px 40px;
-            border-top: 1px solid var(--secondary-color);
-        }
-
-        .section-header {
-            max-width: 1200px;
-            margin: 0 auto 60px;
-        }
-
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .section-subtitle {
-            color: var(--muted-color);
-        }
-
-        .articles-grid {
-            max-width: 1200px;
-            margin: 0 auto;
+        .scam-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
         }
 
-        .article-card {
-            background: var(--secondary-color);
-            padding: 40px;
-            border: 1px solid transparent;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .stat {
+            border: 2px solid var(--text-color);
+            padding: 20px;
         }
 
-        .article-card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-5px);
-        }
-
-        .article-number {
+        .stat-label {
             font-size: 0.75rem;
-            color: var(--accent-color);
-            letter-spacing: 0.2em;
-            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 8px;
+            opacity: 0.7;
         }
 
-        .article-title {
-            font-family: 'Playfair Display', serif;
+        .stat-value {
+            font-family: 'Space Grotesk', sans-serif;
             font-size: 1.5rem;
-            margin-bottom: 15px;
-            line-height: 1.3;
-        }
-
-        .article-excerpt {
-            color: var(--muted-color);
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        .article-author {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: #888;
+            font-weight: 700;
         }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 60px 40px;
-            border-top: 1px solid var(--secondary-color);
-            color: var(--muted-color);
-            font-size: 0.85rem;
+            padding: 40px;
+            border-top: 2px solid var(--text-color);
+            margin: 0 40px;
+        }
+
+        .footer-text {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            max-width: 500px;
+            line-height: 1.3;
+        }
+
+        .footer-line {
+            width: 80px;
+            height: 6px;
+            background: var(--text-color);
+            margin-top: 15px;
         }
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
+            header {
                 padding: 20px;
             }
 
-            .cover-hero {
+            .cover-main {
+                padding: 20px;
+                min-height: calc(100vh - 150px);
+            }
+
+            .content-section {
                 padding: 40px 20px;
             }
 
-            .articles-section {
-                padding: 60px 20px;
+            footer {
+                margin: 0 20px;
+                padding: 30px 0;
             }
 
-            .articles-grid {
+            .scam-stats {
                 grid-template-columns: 1fr;
-                gap: 30px;
-            }
-
-            .article-card {
-                padding: 30px;
-            }
-
-            .cover-meta {
-                flex-direction: column;
-                gap: 10px;
             }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <a href="index.html" class="nav-logo">ODD <span>MAGAZINE</span></a>
-        <a href="index.html" class="nav-back">← Back to Alphabet</a>
-    </nav>
-
-    <header class="cover-hero" id="cover-hero">
-        <div class="cover-content">
-            <p class="cover-label" id="cover-label">Issue A</p>
-            <h1 class="cover-title" id="cover-title">Architecture</h1>
-            <p class="cover-subtitle" id="cover-subtitle">Exploring the spaces we inhabit and the structures that shape our world.</p>
-            
-            <div class="cover-meta">
-                <span>📅 February 2026</span>
-                <span>📖 12 Articles</span>
-                <span>⏱ 45 min read</span>
-            </div>
-
-            <div class="cover-intro" id="cover-intro">
-                <p>From ancient monuments to futuristic skyscrapers, architecture defines the human experience. In this issue, we examine how buildings influence behavior, the rise of sustainable design, and the architects reimagining our cities for the future.</p>
-            </div>
-        </div>
+    <header>
+        <a href="index.html" class="logo">ODDBALL</a>
+        <a href="index.html" class="nav-back">← Back to ABC's</a>
     </header>
 
-    <section class="articles-section">
-        <div class="section-header">
-            <h2 class="section-title">Featured Articles</h2>
-            <p class="section-subtitle">Selected stories from this issue</p>
-        </div>
+    <main>
+        <section class="cover-main">
+            <div class="scribble-bg"></div>
+            <div class="letter-display">
+                <div class="big-letter" id="big-letter">O</div>
+                <p class="is-for">is for</p>
+                <h1 class="company-name" id="company-name">CZ</h1>
+            </div>
+        </section>
 
-        <div class="articles-grid" id="articles-grid">
-            <!-- Articles will be populated by JavaScript -->
-        </div>
-    </section>
+        <section class="content-section">
+            <div class="scam-details">
+                <p class="scam-title" id="scam-title">The Binance Betrayal</p>
+                <p class="scam-description" id="scam-description">
+                    Changpeng Zhao built the world's largest crypto exchange, then pleaded guilty to money laundering violations. Binance processed transactions for terrorist organizations and sanctioned entities while claiming to have robust compliance. The $4.3 billion penalty was the largest in crypto history. CZ walked away with billions while retail investors absorbed the chaos.
+                </p>
+
+                <div class="scam-stats">
+                    <div class="stat">
+                        <p class="stat-label">Year</p>
+                        <p class="stat-value" id="stat-year">2023</p>
+                    </div>
+                    <div class="stat">
+                        <p class="stat-label">Amount Lost</p>
+                        <p class="stat-value" id="stat-amount">$4.3B</p>
+                    </div>
+                    <div class="stat">
+                        <p class="stat-label">Victims</p>
+                        <p class="stat-value" id="stat-victims">Millions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
-        <p>ODD MAGAZINE &copy; 2026</p>
+        <p class="footer-text">Whatever you think about crypto presently is not as bad as cryptos history.</p>
+        <div class="footer-line"></div>
     </footer>
 
     <script>
-        // Issue data
-        const issues = {
+        // Crypto scam data for each letter
+        const scamData = {
             'A': {
-                title: 'Architecture',
-                subtitle: 'Exploring the spaces we inhabit and the structures that shape our world.',
-                intro: 'From ancient monuments to futuristic skyscrapers, architecture defines the human experience. In this issue, we examine how buildings influence behavior, the rise of sustainable design, and the architects reimagining our cities for the future.',
-                articles: [
-                    { number: '01', title: 'The Psychology of Space', excerpt: 'How ceiling height affects creativity and why open offices failed.', author: 'Sarah Chen' },
-                    { number: '02', title: 'Concrete Jungle', excerpt: 'The brutalist revival and why young architects are embracing raw materials.', author: 'Marcus Webb' },
-                    { number: '03', title: 'Vertical Cities', excerpt: 'As land becomes scarce, architects look up. The case for 500-story buildings.', author: 'Yuki Tanaka' },
-                    { number: '04', title: 'Sacred Geometry', excerpt: 'The mathematical patterns that appear across religious architecture worldwide.', author: 'Dr. Amara Okafor' }
-                ]
+                company: 'Africrypt',
+                title: 'The South African Vanishing',
+                description: 'Brothers Raees and Ameer Cajee claimed their $3.6 billion crypto exchange was hacked. They disappeared immediately after. The "hack" happened while Bitcoin was crashing. Investors never saw their money again.',
+                year: '2021',
+                amount: '$3.6B',
+                victims: 'Investors'
             },
             'B': {
-                title: 'Biology',
-                subtitle: 'The science of life in all its forms.',
-                intro: 'From the microscopic to the magnificent, biology reveals the intricate mechanisms of life. This issue explores CRISPR ethics, extremophiles, and the search for life beyond Earth.',
-                articles: [
-                    { number: '01', title: 'The Extremophiles', excerpt: 'Life in acid, boiling water, and radiation. What it teaches us about survival.', author: 'Dr. James Miller' },
-                    { number: '02', title: 'Editing Humanity', excerpt: 'CRISPR babies, gene drives, and the ethical frontier of genetic engineering.', author: 'Lisa Park' },
-                    { number: '03', title: 'The Wood Wide Web', excerpt: 'How trees communicate through fungal networks beneath our feet.', author: 'Dr. Suzanne Simard' },
-                    { number: '04', title: 'Synthetic Life', excerpt: 'Scientists are building organisms from scratch. What could go wrong?', author: 'Tomás Rivera' }
-                ]
+                company: 'Bitconnect',
+                title: 'The Ponzi That Promised Everything',
+                description: 'Carlos Matos screamed "Bitconnect!" into the microphone while thousands lost their life savings. The lending platform promised 1% daily returns through a mysterious "trading bot." It was all a Ponzi. The founders vanished with $2.4 billion.',
+                year: '2018',
+                amount: '$2.4B',
+                victims: 'Thousands'
             },
             'C': {
-                title: 'Cinema',
-                subtitle: 'The art and business of moving images.',
-                intro: 'Film shapes culture, reflects society, and transports us to other worlds. In this issue: the streaming wars, AI-generated movies, and the directors defining the new wave.',
-                articles: [
-                    { number: '01', title: 'The Algorithm\'s Cut', excerpt: 'How Netflix uses data to greenlight shows and why creators are worried.', author: 'Rachel Kim' },
-                    { number: '02', title: 'Indie Renaissance', excerptn: 'Small budgets, big visions. The filmmakers proving Hollywood wrong.', author: 'David Chen' },
-                    { number: '03', title: 'Virtual Production', excerpt: 'LED walls and real-time rendering are changing how movies get made.', author: 'Alex Thompson' },
-                    { number: '04', title: 'The Last Movie Theater', excerpt: 'Streaming killed the cinema star. Or did it?', author: 'Maria Garcia' }
-                ]
+                company: 'CZ',
+                title: 'The Binance Betrayal',
+                description: 'Changpeng Zhao built the world\'s largest crypto exchange, then pleaded guilty to money laundering violations. Binance processed transactions for terrorist organizations and sanctioned entities while claiming to have robust compliance. The $4.3 billion penalty was the largest in crypto history.',
+                year: '2023',
+                amount: '$4.3B',
+                victims: 'Millions'
             },
             'D': {
-                title: 'Design',
-                subtitle: 'Form, function, and everything in between.',
-                intro: 'Good design is invisible. Bad design is everywhere. This issue examines the principles that separate them, from Dieter Rams to digital interfaces.',
-                articles: [
-                    { number: '01', title: 'The Invisible Interface', excerpt: 'Why the best technology disappears when you use it.', author: 'Jonny Ive' },
-                    { number: '02', title: 'Designing for Emotion', excerpt: 'How color, typography, and spacing influence how we feel.', author: 'Don Norman' },
-                    { number: '03', title: 'Sustainable Aesthetics', excerpt: 'Can beautiful objects also be good for the planet?', author: 'Stella McCartney' },
-                    { number: '04', title: 'The Anti-Design Movement', excerpt: 'Why some creators are embracing ugliness on purpose.', author: 'Zara Ali' }
-                ]
+                company: 'Do Kwon',
+                title: 'The Terra Luna Collapse',
+                description: 'Do Kwon\'s algorithmic stablecoin UST was supposed to maintain its $1 peg through code. Instead, it crashed to zero in days, taking $40 billion with it. Kwon had been warned by developers months earlier. He fled to Serbia before being arrested in Montenegro.',
+                year: '2022',
+                amount: '$40B',
+                victims: 'Global'
+            },
+            'E': {
+                company: 'EtherDelta',
+                title: 'The Unregistered Exchange',
+                description: 'Zachary Coburn ran EtherDelta, a decentralized exchange, without registering as a securities exchange. The SEC charged him with operating an unregistered national securities exchange. He settled for $388,000 in penalties while users suffered from front-running bots.',
+                year: '2018',
+                amount: '$388K',
+                victims: 'Traders'
+            },
+            'F': {
+                company: 'FTX',
+                title: 'The House of Cards',
+                description: 'Sam Bankman-Fried built a crypto empire on fraud. Customer funds were secretly moved to his hedge fund Alameda Research. SBF used customer money to buy luxury real estate, make political donations, and cover trading losses. $8 billion in customer funds disappeared.',
+                year: '2022',
+                amount: '$8B',
+                victims: '1M+ Users'
+            },
+            'G': {
+                company: 'Gemini Earn',
+                title: 'The Genesis Freeze',
+                description: 'The Winklevoss twins promised Gemini Earn was a safe way to earn yield. They partnered with Genesis, which went bankrupt. $900 million in customer funds became trapped. The SEC sued Gemini for selling unregistered securities.',
+                year: '2022',
+                amount: '$900M',
+                victims: '340K Users'
+            },
+            'H': {
+                company: 'Hackers',
+                title: 'The Ronin Bridge Heist',
+                description: 'North Korean hackers Lazarus Group stole $625 million from Axie Infinity\'s Ronin bridge. It was the largest crypto hack in history at the time. The bridge had only 9 validators, 5 of which were controlled by the same entity. Security theater.',
+                year: '2022',
+                amount: '$625M',
+                victims: 'Axie Players'
+            },
+            'I': {
+                company: 'IcomTech',
+                title: 'The Latino Ponzi',
+                description: 'IcomTech promised daily returns through crypto trading that didn\'t exist. The scheme targeted Spanish-speaking communities across the US and Latin America. Promoters showed off luxury lifestyles while investors lost everything.',
+                year: '2018-2019',
+                amount: 'Millions',
+                victims: 'Communities'
+            },
+            'J': {
+                company: 'Juicebox',
+                title: 'The ConstitutionDAO Fiasco',
+                description: 'ConstitutionDAO raised $47 million in a week to buy a copy of the US Constitution. They lost the auction to Ken Griffin. The "refund" mechanism cost users millions in gas fees. The token became worthless. A perfect metaphor for crypto.',
+                year: '2021',
+                amount: '$47M',
+                victims: 'Contributors'
+            },
+            'K': {
+                company: 'KuCoin',
+                title: 'The Hot Wallet Hack',
+                description: 'Hackers stole $280 million from KuCoin\'s hot wallets. The exchange initially downplayed the breach. CEO Johnny Lyu promised to cover all losses, which raised questions about solvency. Most funds were recovered, but trust was broken.',
+                year: '2020',
+                amount: '$280M',
+                victims: 'Exchange Users'
+            },
+            'L': {
+                company: 'Luna',
+                title: 'The Algorithmic Lie',
+                description: 'Do Kwon\'s Terra ecosystem promised 20% yields on Anchor Protocol. It was unsustainable. When the death spiral began, Kwon allegedly cashed out $80 million monthly before the collapse. Retail investors held the worthless LUNA tokens.',
+                year: '2022',
+                amount: '$40B+',
+                victims: 'Retail'
+            },
+            'M': {
+                company: 'Mt. Gox',
+                title: 'The Original Sin',
+                description: 'Once the world\'s largest Bitcoin exchange, handling 70% of all trades. Then 850,000 bitcoins disappeared. CEO Mark K\u00e4rpeles was arrested but found not guilty of embezzlement. Users are still waiting for partial refunds a decade later.',
+                year: '2014',
+                amount: '$450M',
+                victims: '24K Users'
+            },
+            'N': {
+                company: 'Nexo',
+                title: 'The Regulatory Raid',
+                description: 'Nexo promised up to 12% interest on crypto deposits. Multiple states issued cease and desist orders. The company was charged with selling unregistered securities. They exited the US market while denying all wrongdoing.',
+                year: '2023',
+                amount: 'Unknown',
+                victims: 'US Customers'
+            },
+            'O': {
+                company: 'OneCoin',
+                title: 'The Fake Cryptocurrency',
+                description: 'Ruja Ignatova, the "Cryptoqueen," sold a cryptocurrency that didn\'t actually exist. No blockchain, no mining, just a SQL database. She raised $4 billion from investors worldwide. She disappeared in 2017 and is still on the FBI\'s most wanted list.',
+                year: '2014-2017',
+                amount: '$4B',
+                victims: '3M+ Global'
+            },
+            'P': {
+                company: 'PlusToken',
+                title: 'The Chinese Mega Ponzi',
+                description: 'A wallet app that promised 10-30% monthly returns. It was the largest crypto Ponzi scheme ever. Chinese police arrested 109 people, but the founders disappeared with 180,000 BTC. The sell-off crashed Bitcoin\'s price multiple times.',
+                year: '2018-2019',
+                amount: '$2-3B',
+                victims: 'Millions'
+            },
+            'Q': {
+                company: 'QuadrigaCX',
+                title: 'The Dead Man\'s Password',
+                description: 'CEO Gerald Cotten died in India, taking the passwords to $190 million in customer funds to his grave. Or did he? Investigators found he had been moving customer funds for years. No blockchain records matched the exchange\'s claims.',
+                year: '2019',
+                amount: '$190M',
+                victims: '115K Users'
+            },
+            'R': {
+                company: 'Rug Pulls',
+                title: 'The NFT Cash Grabs',
+                description: 'The Bored Ape Yacht Club model spawned thousands of copycats. Developers would mint NFTs, promise a roadmap, then disappear with the ETH. "Rug pull" became the defining term of the 2021 NFT craze. Most projects went to zero.',
+                year: '2021-2022',
+                amount: '$2.8B+',
+                victims: 'NFT Buyers'
+            },
+            'S': {
+                company: 'SBF',
+                title: 'The Effective Altruist',
+                description: 'Sam Bankman-Fried wore shorts and talked about saving the world while stealing customer funds. He donated millions to politicians, bought celebrity endorsements, and lived in a $30 million penthouse. The math never added up.',
+                year: '2019-2022',
+                amount: '$8B+',
+                victims: '1M+ Global'
             },
             'T': {
-                title: 'Technology',
-                subtitle: 'Tools that transform civilization.',
-                intro: 'From the first stone axe to artificial intelligence, technology defines human progress. This issue explores the breakthroughs shaping our future.',
-                articles: [
-                    { number: '01', title: 'The Quantum Leap', excerpt: 'Quantum computers are here. What happens when they scale?', author: 'Dr. John Preskill' },
-                    { number: '02', title: 'Brain-Computer Interfaces', excerpt: 'Neuralink and competitors race to merge mind and machine.', author: 'Emily White' },
-                    { number: '03', title: 'The End of Coding', excerpt: 'AI is writing software. What happens to programmers?', author: 'Andrej Karpathy' },
-                    { number: '04', title: 'Fusion Finally', excerpt: 'After decades of promises, unlimited clean energy draws near.', author: 'Dr. Annie Kritcher' }
-                ]
+                company: 'Tether',
+                title: 'The Stablecoin Mystery',
+                description: 'Tether claimed every USDT was backed 1:1 by dollars. It wasn\'t. The company paid $41 million in fines for lying about reserves. They\'ve never provided a full audit. $80+ billion in circulation, backed by who knows what.',
+                year: 'Ongoing',
+                amount: 'Unknown',
+                victims: 'The Ecosystem'
+            },
+            'U': {
+                company: 'Uranium Finance',
+                title: 'The DeFi Exploit',
+                description: 'A "logic error" in the smart contract allowed hackers to drain $57 million. The code was unaudited. The team had warned users about potential bugs. They launched V2 anyway. The exploit happened hours after launch.',
+                year: '2021',
+                amount: '$57M',
+                victims: 'DeFi Users'
+            },
+            'V': {
+                company: 'Voyager Digital',
+                title: 'The False Promise',
+                description: 'Voyager promised FDIC-insured deposits. They lied. The company filed for bankruptcy with $1.3 billion in liabilities. Customers became unsecured creditors. The "insurance" only covered cash, not crypto, and only up to $250K per person.',
+                year: '2022',
+                amount: '$1.3B',
+                victims: 'Customers'
+            },
+            'W': {
+                company: 'Wormhole',
+                title: 'The Bridge Burn',
+                description: 'A bridge between Solana and Ethereum, hacked for $320 million. The vulnerability was in the signature verification. Jump Crypto bailed out the protocol to save Solana\'s ecosystem. Bridges remain the weakest link in crypto.',
+                year: '2022',
+                amount: '$320M',
+                victims: 'Bridge Users'
+            },
+            'X': {
+                company: 'XRP',
+                title: 'The Securities Question',
+                description: 'Ripple sold $1.3 billion in XRP while claiming it wasn\'t a security. The SEC disagreed. The case dragged on for years while XRP was delisted from major exchanges. Retail investors held through the chaos.',
+                year: '2020-2023',
+                amount: '$1.3B',
+                victims: 'XRP Holders'
+            },
+            'Y': {
+                company: 'YouTube Scams',
+                title: 'The Livestream Lies',
+                description: 'Hackers took over major YouTube channels, renamed them to "SpaceX" or "Tesla," and ran fake crypto giveaways. Elon Musk\'s face appeared on thousands of scam streams. Victims sent Bitcoin, expecting double back. They got nothing.',
+                year: 'Ongoing',
+                amount: 'Millions',
+                victims: 'YouTube Users'
+            },
+            'Z': {
+                company: 'ZeekRewards',
+                title: 'The Penny Auction Ponzi',
+                description: 'Before crypto, there was ZeekRewards. Users "invested" in penny auctions for returns up to 125%. It was a $600 million Ponzi. The SEC shut it down. The model lives on in crypto "staking" schemes promising impossible yields.',
+                year: '2012',
+                amount: '$600M',
+                victims: '1M+ Users'
             }
-        };
-
-        // Default fallback
-        const defaultIssue = {
-            title: 'Exploration',
-            subtitle: 'Discovering the unknown and expanding horizons.',
-            intro: 'Every letter of the alphabet represents a different domain of human knowledge and creativity. Click through to explore each world.',
-            articles: [
-                { number: '01', title: 'Coming Soon', excerpt: 'This issue is currently in development. Check back soon for new content.', author: 'ODD Editorial' }
-            ]
         };
 
         // Get letter from URL
         const urlParams = new URLSearchParams(window.location.search);
-        const letter = urlParams.get('letter') || 'A';
+        const letter = urlParams.get('letter') || 'C';
 
-        // Get issue data
-        const issue = issues[letter] || defaultIssue;
+        // Get scam data
+        const data = scamData[letter] || scamData['C'];
 
         // Update page
-        document.title = `ODD MAGAZINE - ${issue.title}`;
-        document.getElementById('cover-hero').setAttribute('data-letter', letter);
-        document.getElementById('cover-label').textContent = `Issue ${letter}`;
-        document.getElementById('cover-title').textContent = issue.title;
-        document.getElementById('cover-subtitle').textContent = issue.subtitle;
-        document.getElementById('cover-intro').innerHTML = `<p>${issue.intro}</p>`;
-
-        // Render articles
-        const articlesGrid = document.getElementById('articles-grid');
-        articlesGrid.innerHTML = issue.articles.map(article => `
-            <article class="article-card">
-                <p class="article-number">Article ${article.number}</p>
-                <h3 class="article-title">${article.title}</h3>
-                <p class="article-excerpt">${article.excerpt}</p>
-                <p class="article-author">By ${article.author}</p>
-            </article>
-        `).join('');
+        document.title = `ODDBALL MAG - ${letter} is for ${data.company}`;
+        document.getElementById('big-letter').textContent = letter;
+        document.getElementById('company-name').textContent = data.company;
+        document.getElementById('scam-title').textContent = data.title;
+        document.getElementById('scam-description').textContent = data.description;
+        document.getElementById('stat-year').textContent = data.year;
+        document.getElementById('stat-amount').textContent = data.amount;
+        document.getElementById('stat-victims').textContent = data.victims;
     </script>
 </body>
 </html>

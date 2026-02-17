@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ODDBALL MAG - Cover</title>
+    <title>ODDBALL MAG - Article</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,471 +17,643 @@
         :root {
             --bg-color: #e8e4dc;
             --text-color: #0a0a0a;
+            --accent-color: #ff0000;
         }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--bg-color);
             color: var(--text-color);
-            min-height: 100vh;
             line-height: 1.4;
         }
 
-        /* Header */
-        header {
-            padding: 30px 40px;
+        /* Navigation */
+        nav {
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
+            border-bottom: 2px solid var(--text-color);
         }
 
         .logo {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.8rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            letter-spacing: -0.02em;
             text-decoration: none;
             color: var(--text-color);
         }
 
         .nav-back {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--text-color);
             text-decoration: none;
             border-bottom: 1px solid var(--text-color);
-            padding-bottom: 2px;
         }
 
-        /* Main Cover */
-        .cover-main {
+        /* Main Layout - Two Page Spread */
+        .spread {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: calc(100vh - 60px);
+        }
+
+        /* Left Page - Giant Letter */
+        .left-page {
+            background: var(--text-color);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: calc(100vh - 200px);
-            padding: 40px;
+            padding: 60px;
             position: relative;
         }
 
-        /* Scribble effect behind letter */
-        .scribble-bg {
-            position: absolute;
-            width: 80%;
-            max-width: 600px;
-            height: 300px;
-            background: repeating-linear-gradient(
-                0deg,
-                transparent,
-                transparent 8px,
-                var(--text-color) 8px,
-                var(--text-color) 12px
-            );
-            opacity: 0.15;
-            transform: rotate(-2deg);
-            z-index: 0;
-        }
-
-        .letter-display {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-        }
-
-        .big-letter {
+        .giant-letter {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(10rem, 25vw, 20rem);
+            font-size: clamp(15rem, 35vw, 30rem);
             font-weight: 700;
+            color: var(--bg-color);
             line-height: 0.8;
-            position: relative;
-            display: inline-block;
-        }
-
-        .big-letter::after {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60%;
-            height: 60%;
-            background: var(--text-color);
-            opacity: 0.1;
-            border-radius: 50%;
-            filter: blur(40px);
         }
 
         .is-for {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 500;
+            font-size: 2rem;
+            color: var(--bg-color);
             margin-top: 20px;
         }
 
-        .company-name {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-top: 10px;
-            letter-spacing: -0.02em;
+        /* Right Page - Article */
+        .right-page {
+            padding: 60px;
+            overflow-y: auto;
         }
 
-        /* Content Section */
-        .content-section {
-            padding: 60px 40px;
-            max-width: 800px;
+        .headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 40px;
+        }
+
+        /* Article Grid */
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .column {
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+
+        .column p {
+            margin-bottom: 15px;
+        }
+
+        .column strong {
+            font-weight: 600;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            border: 2px solid var(--text-color);
+            padding: 20px;
+            margin: 30px 0;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .highlight-box p {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box p:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Quote */
+        .quote {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            font-style: italic;
+            margin: 30px 0;
+            padding-left: 20px;
+            border-left: 3px solid var(--text-color);
+        }
+
+        /* Image Section */
+        .image-section {
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .scammer-image {
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+            font-size: 0.9rem;
             margin: 0 auto;
         }
 
-        .scam-details {
-            border-top: 2px solid var(--text-color);
-            padding-top: 40px;
-        }
-
-        .scam-title {
+        .scam-amount {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            color: var(--accent-color);
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
         }
 
-        .scam-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin-bottom: 30px;
+        /* List Section */
+        .list-section {
+            margin: 30px 0;
         }
 
-        .scam-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-            margin-top: 40px;
+        .list-section p {
+            margin-bottom: 8px;
+            font-size: 0.9rem;
         }
 
-        .stat {
-            border: 2px solid var(--text-color);
-            padding: 20px;
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            margin-bottom: 8px;
-            opacity: 0.7;
-        }
-
-        .stat-value {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
+            margin-bottom: 15px;
+            margin-top: 30px;
         }
 
         /* Footer */
-        footer {
-            padding: 40px;
+        .page-footer {
+            padding: 30px 40px;
             border-top: 2px solid var(--text-color);
-            margin: 0 40px;
+            font-size: 0.8rem;
         }
 
-        .footer-text {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
-            font-weight: 500;
-            max-width: 500px;
-            line-height: 1.3;
-        }
-
-        .footer-line {
-            width: 80px;
-            height: 6px;
-            background: var(--text-color);
-            margin-top: 15px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                padding: 20px;
-            }
-
-            .cover-main {
-                padding: 20px;
-                min-height: calc(100vh - 150px);
-            }
-
-            .content-section {
-                padding: 40px 20px;
-            }
-
-            footer {
-                margin: 0 20px;
-                padding: 30px 0;
-            }
-
-            .scam-stats {
+        /* Mobile Responsive */
+        @media (max-width: 900px) {
+            .spread {
                 grid-template-columns: 1fr;
+            }
+
+            .left-page {
+                min-height: 50vh;
+                padding: 40px;
+            }
+
+            .giant-letter {
+                font-size: 10rem;
+            }
+
+            .right-page {
+                padding: 30px;
+            }
+
+            .article-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .headline {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
-    <header>
-        <a href="index.html" class="logo">ODDBALL</a>
+    <nav>
+        <a href="index.html" class="logo">ODDBALL MAG</a>
         <a href="index.html" class="nav-back">← Back to ABC's</a>
-    </header>
+    </nav>
 
-    <main>
-        <section class="cover-main">
-            <div class="scribble-bg"></div>
-            <div class="letter-display">
-                <div class="big-letter" id="big-letter">O</div>
-                <p class="is-for">is for</p>
-                <h1 class="company-name" id="company-name">CZ</h1>
-            </div>
-        </section>
+    <div class="spread">
+        <!-- Left Page -->
+        <div class="left-page">
+            <div class="giant-letter" id="giant-letter">C</div>
+            <p class="is-for">is for <span id="company-name">CZ</span></p>
+        </div>
 
-        <section class="content-section">
-            <div class="scam-details">
-                <p class="scam-title" id="scam-title">The Binance Betrayal</p>
-                <p class="scam-description" id="scam-description">
-                    Changpeng Zhao built the world's largest crypto exchange, then pleaded guilty to money laundering violations. Binance processed transactions for terrorist organizations and sanctioned entities while claiming to have robust compliance. The $4.3 billion penalty was the largest in crypto history. CZ walked away with billions while retail investors absorbed the chaos.
-                </p>
+        <!-- Right Page -->
+        <div class="right-page">
+            <h1 class="headline" id="headline">How CZ Built an Empire on Plausible Deniability</h1>
 
-                <div class="scam-stats">
-                    <div class="stat">
-                        <p class="stat-label">Year</p>
-                        <p class="stat-value" id="stat-year">2023</p>
+            <div class="article-grid">
+                <div class="column">
+                    <p><strong>What if we told you the biggest heist in crypto history wasn't a heist at all?</strong></p>
+                    <p>What if it was just... business?</p>
+                    <br>
+                    <p>CZ didn't hack anything. Didn't exploit a smart contract. Didn't rug pull.</p>
+                    <p>He just looked at the global financial system and asked:</p>
+                    <p class="quote">"What if I simply... didn't?"</p>
+                </div>
+
+                <div class="column">
+                    <div class="highlight-box">
+                        <p>Do obviously illegal thing</p>
+                        <p>Get very rich</p>
+                        <p>Get caught</p>
+                        <p>Pay fine that sounds huge but isn't</p>
+                        <p>Keep being rich</p>
+                        <p>Everyone forgets</p>
                     </div>
-                    <div class="stat">
-                        <p class="stat-label">Amount Lost</p>
-                        <p class="stat-value" id="stat-amount">$4.3B</p>
+
+                    <p><strong>"Move fast and break things" applies to laws too, apparently.</strong> Prison time is inversely proportional to the amount of money you make breaking the law.</p>
+
+                    <div class="list-section">
+                        <p>Didn't follow KYC laws.</p>
+                        <p>Didn't respect sanctions.</p>
+                        <p>Didn't acknowledge borders.</p>
+                        <p>Didn't pretend the rules applied to him.</p>
                     </div>
-                    <div class="stat">
-                        <p class="stat-label">Victims</p>
-                        <p class="stat-value" id="stat-victims">Millions</p>
+                </div>
+
+                <div class="column">
+                    <p><strong>The fine was $4 billion but his net worth is like $40 billion.</strong> That's not justice. That's a 10% "sorry I got caught" tax.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>Crime is a volume business. Do one illegal thing, go to jail. Do a billion, pay a fine.</p>
+
+                    <p>The difference between a scammer and a founder is just how many venture capitalists believe in you.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: CZ]</div>
+                        <span class="scam-amount">SCAMMED: 4 BILLION</span>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </div>
 
-    <footer>
-        <p class="footer-text">Whatever you think about crypto presently is not as bad as cryptos history.</p>
-        <div class="footer-line"></div>
+    <footer class="page-footer">
+        ODDBALL MAG - Issue #1 - ABC's of Crypto Scams
     </footer>
 
     <script>
-        // Crypto scam data for each letter
-        const scamData = {
+        // Crypto scam article data
+        const articleData = {
             'A': {
+                letter: 'A',
                 company: 'Africrypt',
-                title: 'The South African Vanishing',
-                description: 'Brothers Raees and Ameer Cajee claimed their $3.6 billion crypto exchange was hacked. They disappeared immediately after. The "hack" happened while Bitcoin was crashing. Investors never saw their money again.',
-                year: '2021',
-                amount: '$3.6B',
-                victims: 'Investors'
+                headline: 'The Brothers Who Vanished With $3.6 Billion',
+                col1: `
+                    <p><strong>What if we told you two brothers could steal a country's trust?</strong></p>
+                    <p>What if they just... disappeared?</p>
+                    <br>
+                    <p>Raees and Ameer Cajee didn't hack anything. They just stopped answering emails.</p>
+                    <p>They looked at their investors and asked:</p>
+                    <p class="quote">"What if we simply... left?"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Promise 10% returns</p>
+                        <p>Collect $3.6 billion</p>
+                        <p>Claim "hack"</p>
+                        <p>Flee to UK</p>
+                        <p>Change names</p>
+                        <p>Live happily ever after</p>
+                    </div>
+                    <p><strong>The "hack" happened while Bitcoin was crashing.</strong> Perfect timing for a vanishing act.</p>
+                    <div class="list-section">
+                        <p>Didn't answer phone calls.</p>
+                        <p>Didn't file police reports.</p>
+                        <p>Didn't act like victims.</p>
+                        <p>Didn't stay in South Africa.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>The largest crypto theft in history.</strong> And the thieves are still at large.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>If you steal enough money, you can buy a new identity.</p>
+
+                    <p>The Cajee brothers proved that crypto's "trustless" system just means you can't trust anyone.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: Cajee Brothers]</div>
+                        <span class="scam-amount">SCAMMED: $3.6B</span>
+                    </div>
+                `
             },
             'B': {
+                letter: 'B',
                 company: 'Bitconnect',
-                title: 'The Ponzi That Promised Everything',
-                description: 'Carlos Matos screamed "Bitconnect!" into the microphone while thousands lost their life savings. The lending platform promised 1% daily returns through a mysterious "trading bot." It was all a Ponzi. The founders vanished with $2.4 billion.',
-                year: '2018',
-                amount: '$2.4B',
-                victims: 'Thousands'
+                headline: 'How Carlos Matos Screamed His Way to $2.4 Billion',
+                col1: `
+                    <p><strong>What if we told you a man screaming "Bitconnect!" was a warning sign?</strong></p>
+                    <p>What if everyone laughed instead?</p>
+                    <br>
+                    <p>Bitconnect promised 1% daily returns. Compounded, that's 3,700% annually.</p>
+                    <p>Carlos Matos asked the world:</p>
+                    <p class="quote">"Hey hey heeeey!"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Promise impossible returns</p>
+                        <p>Create referral pyramid</p>
+                        <p>Hire hype men</p>
+                        <p>Cash out early</p>
+                        <p>Let it collapse</p>
+                        <p>Disappear</p>
+                    </div>
+                    <p><strong>The "trading bot" never existed.</strong> New investor money paid old investors. Classic Ponzi.</p>
+                    <div class="list-section">
+                        <p>No trading algorithm.</p>
+                        <p>No blockchain verification.</p>
+                        <p>No regulatory compliance.</p>
+                        <p>No one asked questions.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>$2.4 billion gone.</strong> Thousands lost their life savings. Carlos Matos claimed he lost money too.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>If returns sound too good to be true, they're probably from the next victim.</p>
+
+                    <p>The difference between a scam and a "lending platform" is just marketing.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: Carlos Matos]</div>
+                        <span class="scam-amount">SCAMMED: $2.4B</span>
+                    </div>
+                `
             },
             'C': {
+                letter: 'C',
                 company: 'CZ',
-                title: 'The Binance Betrayal',
-                description: 'Changpeng Zhao built the world\'s largest crypto exchange, then pleaded guilty to money laundering violations. Binance processed transactions for terrorist organizations and sanctioned entities while claiming to have robust compliance. The $4.3 billion penalty was the largest in crypto history.',
-                year: '2023',
-                amount: '$4.3B',
-                victims: 'Millions'
+                headline: 'How CZ Built an Empire on Plausible Deniability',
+                col1: `
+                    <p><strong>What if we told you the biggest heist in crypto history wasn't a heist at all?</strong></p>
+                    <p>What if it was just... business?</p>
+                    <br>
+                    <p>CZ didn't hack anything. Didn't exploit a smart contract. Didn't rug pull.</p>
+                    <p>He just looked at the global financial system and asked:</p>
+                    <p class="quote">"What if I simply... didn't?"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Do obviously illegal thing</p>
+                        <p>Get very rich</p>
+                        <p>Get caught</p>
+                        <p>Pay fine that sounds huge but isn't</p>
+                        <p>Keep being rich</p>
+                        <p>Everyone forgets</p>
+                    </div>
+                    <p><strong>"Move fast and break things" applies to laws too, apparently.</strong> Prison time is inversely proportional to the amount of money you make breaking the law.</p>
+                    <div class="list-section">
+                        <p>Didn't follow KYC laws.</p>
+                        <p>Didn't respect sanctions.</p>
+                        <p>Didn't acknowledge borders.</p>
+                        <p>Didn't pretend the rules applied to him.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>The fine was $4 billion but his net worth is like $40 billion.</strong> That's not justice. That's a 10% "sorry I got caught" tax.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>Crime is a volume business. Do one illegal thing, go to jail. Do a billion, pay a fine.</p>
+
+                    <p>The difference between a scammer and a founder is just how many venture capitalists believe in you.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: CZ]</div>
+                        <span class="scam-amount">SCAMMED: $4 BILLION</span>
+                    </div>
+                `
             },
             'D': {
+                letter: 'D',
                 company: 'Do Kwon',
-                title: 'The Terra Luna Collapse',
-                description: 'Do Kwon\'s algorithmic stablecoin UST was supposed to maintain its $1 peg through code. Instead, it crashed to zero in days, taking $40 billion with it. Kwon had been warned by developers months earlier. He fled to Serbia before being arrested in Montenegro.',
-                year: '2022',
-                amount: '$40B',
-                victims: 'Global'
-            },
-            'E': {
-                company: 'EtherDelta',
-                title: 'The Unregistered Exchange',
-                description: 'Zachary Coburn ran EtherDelta, a decentralized exchange, without registering as a securities exchange. The SEC charged him with operating an unregistered national securities exchange. He settled for $388,000 in penalties while users suffered from front-running bots.',
-                year: '2018',
-                amount: '$388K',
-                victims: 'Traders'
+                headline: 'The Terraform Labs Collapse: $40 Billion in 72 Hours',
+                col1: `
+                    <p><strong>What if we told you an algorithm could destroy $40 billion?</strong></p>
+                    <p>What if the code was working exactly as designed?</p>
+                    <br>
+                    <p>Do Kwon created UST, a "stablecoin" backed by code, not dollars.</p>
+                    <p>He looked at traditional finance and asked:</p>
+                    <p class="quote">"What if we just... printed our own money?"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Promise 20% yields</p>
+                        <p>Attract $14 billion in deposits</p>
+                        <p>Algorithm fails</p>
+                        <p>Death spiral begins</p>
+                        <p>Both coins go to zero</p>
+                        <p>Flee to Serbia</p>
+                    </div>
+                    <p><strong>Developers warned him months earlier.</strong> He called them "poor" and blocked them.</p>
+                    <div class="list-section">
+                        <p>Didn't have collateral.</p>
+                        <p>Didn't listen to warnings.</p>
+                        <p>Didn't stop the cascade.</p>
+                        <p>Didn't stay to face consequences.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>$40 billion evaporated.</strong> Retail investors lost everything. Do Kwon was arrested in Montenegro with fake passports.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>If you can't explain how something works, you shouldn't put your life savings in it.</p>
+
+                    <p>"Algorithmic stablecoin" is just a fancy way of saying "magic money machine."</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: Do Kwon]</div>
+                        <span class="scam-amount">SCAMMED: $40B</span>
+                    </div>
+                `
             },
             'F': {
+                letter: 'F',
                 company: 'FTX',
-                title: 'The House of Cards',
-                description: 'Sam Bankman-Fried built a crypto empire on fraud. Customer funds were secretly moved to his hedge fund Alameda Research. SBF used customer money to buy luxury real estate, make political donations, and cover trading losses. $8 billion in customer funds disappeared.',
-                year: '2022',
-                amount: '$8B',
-                victims: '1M+ Users'
-            },
-            'G': {
-                company: 'Gemini Earn',
-                title: 'The Genesis Freeze',
-                description: 'The Winklevoss twins promised Gemini Earn was a safe way to earn yield. They partnered with Genesis, which went bankrupt. $900 million in customer funds became trapped. The SEC sued Gemini for selling unregistered securities.',
-                year: '2022',
-                amount: '$900M',
-                victims: '340K Users'
-            },
-            'H': {
-                company: 'Hackers',
-                title: 'The Ronin Bridge Heist',
-                description: 'North Korean hackers Lazarus Group stole $625 million from Axie Infinity\'s Ronin bridge. It was the largest crypto hack in history at the time. The bridge had only 9 validators, 5 of which were controlled by the same entity. Security theater.',
-                year: '2022',
-                amount: '$625M',
-                victims: 'Axie Players'
-            },
-            'I': {
-                company: 'IcomTech',
-                title: 'The Latino Ponzi',
-                description: 'IcomTech promised daily returns through crypto trading that didn\'t exist. The scheme targeted Spanish-speaking communities across the US and Latin America. Promoters showed off luxury lifestyles while investors lost everything.',
-                year: '2018-2019',
-                amount: 'Millions',
-                victims: 'Communities'
-            },
-            'J': {
-                company: 'Juicebox',
-                title: 'The ConstitutionDAO Fiasco',
-                description: 'ConstitutionDAO raised $47 million in a week to buy a copy of the US Constitution. They lost the auction to Ken Griffin. The "refund" mechanism cost users millions in gas fees. The token became worthless. A perfect metaphor for crypto.',
-                year: '2021',
-                amount: '$47M',
-                victims: 'Contributors'
-            },
-            'K': {
-                company: 'KuCoin',
-                title: 'The Hot Wallet Hack',
-                description: 'Hackers stole $280 million from KuCoin\'s hot wallets. The exchange initially downplayed the breach. CEO Johnny Lyu promised to cover all losses, which raised questions about solvency. Most funds were recovered, but trust was broken.',
-                year: '2020',
-                amount: '$280M',
-                victims: 'Exchange Users'
-            },
-            'L': {
-                company: 'Luna',
-                title: 'The Algorithmic Lie',
-                description: 'Do Kwon\'s Terra ecosystem promised 20% yields on Anchor Protocol. It was unsustainable. When the death spiral began, Kwon allegedly cashed out $80 million monthly before the collapse. Retail investors held the worthless LUNA tokens.',
-                year: '2022',
-                amount: '$40B+',
-                victims: 'Retail'
+                headline: 'Sam Bankman-Fried and the $8 Billion Customer Fund Black Hole',
+                col1: `
+                    <p><strong>What if we told you the most trusted man in crypto was just a thief?</strong></p>
+                    <p>What if he told you himself, but no one listened?</p>
+                    <br>
+                    <p>SBF wore shorts and talked about effective altruism while stealing customer funds.</p>
+                    <p>He looked at his customers and asked:</p>
+                    <p class="quote">"What if I just... borrowed this?"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Build exchange</p>
+                        <p>Gain trust of millions</p>
+                        <p>Secretly move funds to hedge fund</p>
+                        <p>Make bad trades</p>
+                        <p>Buy luxury real estate</p>
+                        <p>Get arrested</p>
+                    </div>
+                    <p><strong>The "risk management" was a spreadsheet with hidden negative balances.</strong> It was never reconciled.</p>
+                    <div class="list-section">
+                        <p>Didn't have reserves.</p>
+                        <p>Didn't have oversight.</p>
+                        <p>Didn't have ethics.</p>
+                        <p>Didn't have an exit plan.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>$8 billion in customer funds gone.</strong> SBF played video games while his empire collapsed.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>If someone tells you they're saving the world, check your wallet.</p>
+
+                    <p>The difference between genius and fraud is often just time.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: SBF]</div>
+                        <span class="scam-amount">SCAMMED: $8B</span>
+                    </div>
+                `
             },
             'M': {
+                letter: 'M',
                 company: 'Mt. Gox',
-                title: 'The Original Sin',
-                description: 'Once the world\'s largest Bitcoin exchange, handling 70% of all trades. Then 850,000 bitcoins disappeared. CEO Mark K\u00e4rpeles was arrested but found not guilty of embezzlement. Users are still waiting for partial refunds a decade later.',
-                year: '2014',
-                amount: '$450M',
-                victims: '24K Users'
-            },
-            'N': {
-                company: 'Nexo',
-                title: 'The Regulatory Raid',
-                description: 'Nexo promised up to 12% interest on crypto deposits. Multiple states issued cease and desist orders. The company was charged with selling unregistered securities. They exited the US market while denying all wrongdoing.',
-                year: '2023',
-                amount: 'Unknown',
-                victims: 'US Customers'
+                headline: 'The Original Sin: Where 850,000 Bitcoins Went to Die',
+                col1: `
+                    <p><strong>What if we told you the first Bitcoin exchange was the biggest theft?</strong></p>
+                    <p>What if it took a decade to partially resolve?</p>
+                    <br>
+                    <p>Mt. Gox handled 70% of all Bitcoin trades. Then the money vanished.</p>
+                    <p>Mark Karpelès looked at his empty wallets and asked:</p>
+                    <p class="quote">"What if I just... blamed hackers?"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Become biggest exchange</p>
+                        <p>Ignore security warnings</p>
+                        <p>Lose 850,000 BTC</p>
+                        <p>File for bankruptcy</p>
+                        <p>Get arrested</p>
+                        <p>Users wait 10 years</p>
+                    </div>
+                    <p><strong>The "hack" happened over years.</strong> Someone was slowly draining the wallets. No one noticed.</p>
+                    <div class="list-section">
+                        <p>Didn't have cold storage.</p>
+                        <p>Didn't have audits.</p>
+                        <p>Didn't have accountability.</p>
+                        <p>Didn't have a backup plan.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>850,000 bitcoins gone.</strong> Worth $450 million then. Worth billions now. Users are finally getting partial refunds in 2024.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>Not your keys, not your coins. The original warning.</p>
+
+                    <p>If an exchange can't explain its security, assume it doesn't have any.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: Mt. Gox]</div>
+                        <span class="scam-amount">SCAMMED: 850K BTC</span>
+                    </div>
+                `
             },
             'O': {
+                letter: 'O',
                 company: 'OneCoin',
-                title: 'The Fake Cryptocurrency',
-                description: 'Ruja Ignatova, the "Cryptoqueen," sold a cryptocurrency that didn\'t actually exist. No blockchain, no mining, just a SQL database. She raised $4 billion from investors worldwide. She disappeared in 2017 and is still on the FBI\'s most wanted list.',
-                year: '2014-2017',
-                amount: '$4B',
-                victims: '3M+ Global'
-            },
-            'P': {
-                company: 'PlusToken',
-                title: 'The Chinese Mega Ponzi',
-                description: 'A wallet app that promised 10-30% monthly returns. It was the largest crypto Ponzi scheme ever. Chinese police arrested 109 people, but the founders disappeared with 180,000 BTC. The sell-off crashed Bitcoin\'s price multiple times.',
-                year: '2018-2019',
-                amount: '$2-3B',
-                victims: 'Millions'
-            },
-            'Q': {
-                company: 'QuadrigaCX',
-                title: 'The Dead Man\'s Password',
-                description: 'CEO Gerald Cotten died in India, taking the passwords to $190 million in customer funds to his grave. Or did he? Investigators found he had been moving customer funds for years. No blockchain records matched the exchange\'s claims.',
-                year: '2019',
-                amount: '$190M',
-                victims: '115K Users'
-            },
-            'R': {
-                company: 'Rug Pulls',
-                title: 'The NFT Cash Grabs',
-                description: 'The Bored Ape Yacht Club model spawned thousands of copycats. Developers would mint NFTs, promise a roadmap, then disappear with the ETH. "Rug pull" became the defining term of the 2021 NFT craze. Most projects went to zero.',
-                year: '2021-2022',
-                amount: '$2.8B+',
-                victims: 'NFT Buyers'
+                headline: 'The Cryptoqueen and the $4 Billion Coin That Never Existed',
+                col1: `
+                    <p><strong>What if we told you the biggest crypto scam had no blockchain?</strong></p>
+                    <p>What if there was no crypto at all?</p>
+                    <br>
+                    <p>Ruja Ignatova sold OneCoin to millions. It was just a SQL database.</p>
+                    <p>She looked at her victims and asked:</p>
+                    <p class="quote">"What if we just... didn't build it?"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Create fake cryptocurrency</p>
+                        <p>Host massive events</p>
+                        <p>Recruit globally</p>
+                        <p>Collect $4 billion</p>
+                        <p>Disappear in 2017</p>
+                        <p>Still on FBI most wanted</p>
+                    </div>
+                    <p><strong>There was no mining.</strong> No blockchain. No technology. Just a spreadsheet tracking who "owned" what.</p>
+                    <div class="list-section">
+                        <p>Didn't have a blockchain.</p>
+                        <p>Didn't have transactions.</p>
+                        <p>Didn't have legitimacy.</p>
+                        <p>Didn't have to exist.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>$4 billion from 3 million victims.</strong> The Cryptoqueen vanished and has never been found.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>If you can't verify a blockchain exists, assume it doesn't.</p>
+
+                    <p>The word "crypto" in the name doesn't make something cryptocurrency.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: Ruja Ignatova]</div>
+                        <span class="scam-amount">SCAMMED: $4B</span>
+                    </div>
+                `
             },
             'S': {
+                letter: 'S',
                 company: 'SBF',
-                title: 'The Effective Altruist',
-                description: 'Sam Bankman-Fried wore shorts and talked about saving the world while stealing customer funds. He donated millions to politicians, bought celebrity endorsements, and lived in a $30 million penthouse. The math never added up.',
-                year: '2019-2022',
-                amount: '$8B+',
-                victims: '1M+ Global'
-            },
-            'T': {
-                company: 'Tether',
-                title: 'The Stablecoin Mystery',
-                description: 'Tether claimed every USDT was backed 1:1 by dollars. It wasn\'t. The company paid $41 million in fines for lying about reserves. They\'ve never provided a full audit. $80+ billion in circulation, backed by who knows what.',
-                year: 'Ongoing',
-                amount: 'Unknown',
-                victims: 'The Ecosystem'
-            },
-            'U': {
-                company: 'Uranium Finance',
-                title: 'The DeFi Exploit',
-                description: 'A "logic error" in the smart contract allowed hackers to drain $57 million. The code was unaudited. The team had warned users about potential bugs. They launched V2 anyway. The exploit happened hours after launch.',
-                year: '2021',
-                amount: '$57M',
-                victims: 'DeFi Users'
-            },
-            'V': {
-                company: 'Voyager Digital',
-                title: 'The False Promise',
-                description: 'Voyager promised FDIC-insured deposits. They lied. The company filed for bankruptcy with $1.3 billion in liabilities. Customers became unsecured creditors. The "insurance" only covered cash, not crypto, and only up to $250K per person.',
-                year: '2022',
-                amount: '$1.3B',
-                victims: 'Customers'
-            },
-            'W': {
-                company: 'Wormhole',
-                title: 'The Bridge Burn',
-                description: 'A bridge between Solana and Ethereum, hacked for $320 million. The vulnerability was in the signature verification. Jump Crypto bailed out the protocol to save Solana\'s ecosystem. Bridges remain the weakest link in crypto.',
-                year: '2022',
-                amount: '$320M',
-                victims: 'Bridge Users'
-            },
-            'X': {
-                company: 'XRP',
-                title: 'The Securities Question',
-                description: 'Ripple sold $1.3 billion in XRP while claiming it wasn\'t a security. The SEC disagreed. The case dragged on for years while XRP was delisted from major exchanges. Retail investors held through the chaos.',
-                year: '2020-2023',
-                amount: '$1.3B',
-                victims: 'XRP Holders'
-            },
-            'Y': {
-                company: 'YouTube Scams',
-                title: 'The Livestream Lies',
-                description: 'Hackers took over major YouTube channels, renamed them to "SpaceX" or "Tesla," and ran fake crypto giveaways. Elon Musk\'s face appeared on thousands of scam streams. Victims sent Bitcoin, expecting double back. They got nothing.',
-                year: 'Ongoing',
-                amount: 'Millions',
-                victims: 'YouTube Users'
-            },
-            'Z': {
-                company: 'ZeekRewards',
-                title: 'The Penny Auction Ponzi',
-                description: 'Before crypto, there was ZeekRewards. Users "invested" in penny auctions for returns up to 125%. It was a $600 million Ponzi. The SEC shut it down. The model lives on in crypto "staking" schemes promising impossible yields.',
-                year: '2012',
-                amount: '$600M',
-                victims: '1M+ Users'
+                headline: 'The Effective Altruist Who Effectively Took Everything',
+                col1: `
+                    <p><strong>What if we told you the man promising to save humanity was robbing it?</strong></p>
+                    <p>What if the math was always wrong?</p>
+                    <br>
+                    <p>Sam Bankman-Fried wore cargo shorts and talked about pandemic prevention while stealing billions.</p>
+                    <p>He looked at effective altruism and asked:</p>
+                    <p class="quote">"What if I just... kept it?"</p>
+                `,
+                col2: `
+                    <div class="highlight-box">
+                        <p>Study effective altruism</p>
+                        <p>Build crypto empire</p>
+                        <p>Donate to politicians</p>
+                        <p>Buy celebrity endorsements</p>
+                        <p>Steal customer funds</p>
+                        <p>Get convicted</p>
+                    </div>
+                    <p><strong>He lived in a $30 million penthouse while customer funds disappeared.</strong> The altruism was effective for him.</p>
+                    <div class="list-section">
+                        <p>Didn't have risk management.</p>
+                        <p>Didn't have separation of funds.</p>
+                        <p>Didn't have honesty.</p>
+                        <p>Didn't have a conscience.</p>
+                    </div>
+                `,
+                col3: `
+                    <p><strong>$8 billion stolen from over a million users.</strong> The greatest thief in crypto history hid in plain sight.</p>
+
+                    <p class="section-title">What We Learned:</p>
+
+                    <p>If someone talks about saving the world while wearing shorts to Congress, check your pockets.</p>
+
+                    <p>Effective altruism works best when you're altruistic with other people's money.</p>
+
+                    <div class="image-section">
+                        <div class="scammer-image">[Photo: SBF]</div>
+                        <span class="scam-amount">SCAMMED: $8B+</span>
+                    </div>
+                `
             }
         };
 
@@ -489,18 +661,20 @@
         const urlParams = new URLSearchParams(window.location.search);
         const letter = urlParams.get('letter') || 'C';
 
-        // Get scam data
-        const data = scamData[letter] || scamData['C'];
+        // Get article data or use C as default
+        const data = articleData[letter] || articleData['C'];
 
         // Update page
-        document.title = `ODDBALL MAG - ${letter} is for ${data.company}`;
-        document.getElementById('big-letter').textContent = letter;
+        document.title = `ODDBALL MAG - ${data.letter} is for ${data.company}`;
+        document.getElementById('giant-letter').textContent = data.letter;
         document.getElementById('company-name').textContent = data.company;
-        document.getElementById('scam-title').textContent = data.title;
-        document.getElementById('scam-description').textContent = data.description;
-        document.getElementById('stat-year').textContent = data.year;
-        document.getElementById('stat-amount').textContent = data.amount;
-        document.getElementById('stat-victims').textContent = data.victims;
+        document.getElementById('headline').textContent = data.headline;
+
+        // Update columns
+        const columns = document.querySelectorAll('.column');
+        if (columns[0]) columns[0].innerHTML = data.col1;
+        if (columns[1]) columns[1].innerHTML = data.col2;
+        if (columns[2]) columns[2].innerHTML = data.col3;
     </script>
 </body>
 </html>

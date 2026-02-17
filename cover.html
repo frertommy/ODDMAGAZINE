@@ -312,14 +312,49 @@
         .scammer-image {
             width: 100%;
             max-width: 350px;
-            height: 280px;
-            background: #222;
+            height: 320px;
+            background: #1a1a1a;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #555;
-            font-size: 0.85rem;
             margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scammer-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%) contrast(1.1);
+        }
+
+        .scammer-image .placeholder-avatar {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .scammer-image .placeholder-avatar::before {
+            content: attr(data-initial);
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 8rem;
+            font-weight: 700;
+            color: #444;
+        }
+
+        .scammer-image .placeholder-avatar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
         }
 
         .scam-amount {
@@ -330,6 +365,7 @@
             font-family: 'Space Grotesk', sans-serif;
             font-size: 0.85rem;
             font-weight: 700;
+            z-index: 2;
         }
 
         /* Mobile Responsive */
@@ -529,7 +565,9 @@
                     <p>The Cajee brothers proved that crypto's "trustless" system just means you can't trust anyone.</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="A"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: $3.6B</span>
                     </div>
                 `,
@@ -574,7 +612,9 @@
                     <p>The difference between a scam and a "lending platform" is just marketing.</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="B"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: $2.4B</span>
                     </div>
                 `,
@@ -619,7 +659,9 @@
                     <p>The difference between a scammer and a founder is just how many venture capitalists believe in you.</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="C"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: $4 BILLION</span>
                     </div>
                 `,
@@ -664,7 +706,9 @@
                     <p>"Algorithmic stablecoin" is just a fancy way of saying "magic money machine."</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="D"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: $40B</span>
                     </div>
                 `,
@@ -709,7 +753,9 @@
                     <p>The difference between genius and fraud is often just time.</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="F"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: $8B</span>
                     </div>
                 `,
@@ -754,7 +800,9 @@
                     <p>If an exchange can't explain its security, assume it doesn't have any.</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="M"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: 850K BTC</span>
                     </div>
                 `,
@@ -799,7 +847,9 @@
                     <p>The word "crypto" in the name doesn't make something cryptocurrency.</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="O"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: $4B</span>
                     </div>
                 `,
@@ -844,7 +894,9 @@
                     <p>Effective altruism works best when you're altruistic with other people's money.</p>
 
                     <div class="image-section">
-                        <div class="scammer-image">[Photo]</div>
+                        <div class="scammer-image">
+                            <div class="placeholder-avatar" data-initial="S"></div>
+                        </div>
                         <span class="scam-amount">SCAMMED: $8B+</span>
                     </div>
                 `,

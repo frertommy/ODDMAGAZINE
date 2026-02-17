@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODD MAGAZINE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #ff3366;
+            --secondary-color: #1a1a1a;
+            --muted-color: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            padding: 60px 40px 40px;
+            text-align: center;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            color: var(--muted-color);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+        }
+
+        /* Alphabet Grid */
+        .alphabet-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 20px;
+        }
+
+        .letter-card {
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--secondary-color);
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .letter-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, transparent 0%, rgba(255,51,102,0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .letter-card:hover::before {
+            opacity: 1;
+        }
+
+        .letter-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255,51,102,0.1);
+        }
+
+        .letter {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-color);
+            position: relative;
+            z-index: 1;
+        }
+
+        .letter-card:hover .letter {
+            color: var(--accent-color);
+        }
+
+        .letter-label {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.65rem;
+            color: var(--muted-color);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .letter-card:hover .letter-label {
+            opacity: 1;
+        }
+
+        /* Empty state */
+        .letter-card.empty {
+            opacity: 0.3;
+            cursor: default;
+            pointer-events: none;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--secondary-color);
+            color: var(--muted-color);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .alphabet-grid {
+                grid-template-columns: repeat(5, 1fr);
+                gap: 10px;
+            }
+
+            .letter {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 40px 20px 30px;
+            }
+
+            .alphabet-container {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="logo">ODD <span>MAGAZINE</span></h1>
+        <p class="tagline">An Alphabetical Exploration</p>
+    </header>
+
+    <main class="alphabet-container">
+        <div class="alphabet-grid">
+            <a href="cover.html?letter=A" class="letter-card">
+                <span class="letter">A</span>
+                <span class="letter-label">Architecture</span>
+            </a>
+            <a href="cover.html?letter=B" class="letter-card">
+                <span class="letter">B</span>
+                <span class="letter-label">Biology</span>
+            </a>
+            <a href="cover.html?letter=C" class="letter-card">
+                <span class="letter">C</span>
+                <span class="letter-label">Cinema</span>
+            </a>
+            <a href="cover.html?letter=D" class="letter-card">
+                <span class="letter">D</span>
+                <span class="letter-label">Design</span>
+            </a>
+            <a href="cover.html?letter=E" class="letter-card">
+                <span class="letter">E</span>
+                <span class="letter-label">Energy</span>
+            </a>
+            <a href="cover.html?letter=F" class="letter-card">
+                <span class="letter">F</span>
+                <span class="letter-label">Fashion</span>
+            </a>
+            <a href="cover.html?letter=G" class="letter-card">
+                <span class="letter">G</span>
+                <span class="letter-label">Geometry</span>
+            </a>
+            <a href="cover.html?letter=H" class="letter-card">
+                <span class="letter">H</span>
+                <span class="letter-label">History</span>
+            </a>
+            <a href="cover.html?letter=I" class="letter-card">
+                <span class="letter">I</span>
+                <span class="letter-label">Identity</span>
+            </a>
+            <a href="cover.html?letter=J" class="letter-card">
+                <span class="letter">J</span>
+                <span class="letter-label">Journalism</span>
+            </a>
+            <a href="cover.html?letter=K" class="letter-card">
+                <span class="letter">K</span>
+                <span class="letter-label">Kinetics</span>
+            </a>
+            <a href="cover.html?letter=L" class="letter-card">
+                <span class="letter">L</span>
+                <span class="letter-label">Light</span>
+            </a>
+            <a href="cover.html?letter=M" class="letter-card">
+                <span class="letter">M</span>
+                <span class="letter-label">Music</span>
+            </a>
+            <a href="cover.html?letter=N" class="letter-card">
+                <span class="letter">N</span>
+                <span class="letter-label">Nature</span>
+            </a>
+            <a href="cover.html?letter=O" class="letter-card">
+                <span class="letter">O</span>
+                <span class="letter-label">Ocean</span>
+            </a>
+            <a href="cover.html?letter=P" class="letter-card">
+                <span class="letter">P</span>
+                <span class="letter-label">Photography</span>
+            </a>
+            <a href="cover.html?letter=Q" class="letter-card">
+                <span class="letter">Q</span>
+                <span class="letter-label">Quantum</span>
+            </a>
+            <a href="cover.html?letter=R" class="letter-card">
+                <span class="letter">R</span>
+                <span class="letter-label">Revolution</span>
+            </a>
+            <a href="cover.html?letter=S" class="letter-card">
+                <span class="letter">S</span>
+                <span class="letter-label">Space</span>
+            </a>
+            <a href="cover.html?letter=T" class="letter-card">
+                <span class="letter">T</span>
+                <span class="letter-label">Technology</span>
+            </a>
+            <a href="cover.html?letter=U" class="letter-card">
+                <span class="letter">U</span>
+                <span class="letter-label">Urbanism</span>
+            </a>
+            <a href="cover.html?letter=V" class="letter-card">
+                <span class="letter">V</span>
+                <span class="letter-label">Vision</span>
+            </a>
+            <a href="cover.html?letter=W" class="letter-card">
+                <span class="letter">W</span>
+                <span class="letter-label">Writing</span>
+            </a>
+            <a href="cover.html?letter=X" class="letter-card">
+                <span class="letter">X</span>
+                <span class="letter-label">Xenology</span>
+            </a>
+            <a href="cover.html?letter=Y" class="letter-card">
+                <span class="letter">Y</span>
+                <span class="letter-label">Youth</span>
+            </a>
+            <a href="cover.html?letter=Z" class="letter-card">
+                <span class="letter">Z</span>
+                <span class="letter-label">Zenith</span>
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>ODD MAGAZINE &copy; 2026</p>
+        <p style="margin-top: 10px;">Built with <a href="https://github.com/frertommy/ODDMAGAZINE">GitHub Pages</a></p>
+    </footer>
+</body>
+</html>

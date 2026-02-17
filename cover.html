@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ODD MAGAZINE - Cover</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-color: #0a0a0a;
+            --text-color: #ffffff;
+            --accent-color: #ff3366;
+            --secondary-color: #1a1a1a;
+            --muted-color: #666666;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--secondary-color);
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-color);
+        }
+
+        .nav-logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-back {
+            color: var(--muted-color);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-back:hover {
+            color: var(--accent-color);
+        }
+
+        /* Cover Hero */
+        .cover-hero {
+            min-height: calc(100vh - 80px);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cover-hero::before {
+            content: attr(data-letter);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Playfair Display', serif;
+            font-size: 50vw;
+            font-weight: 900;
+            color: var(--accent-color);
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .cover-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cover-label {
+            font-size: 0.85rem;
+            color: var(--accent-color);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .cover-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .cover-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted-color);
+            font-weight: 300;
+            margin-bottom: 40px;
+            max-width: 600px;
+        }
+
+        .cover-meta {
+            display: flex;
+            gap: 30px;
+            font-size: 0.85rem;
+            color: var(--muted-color);
+            margin-bottom: 50px;
+        }
+
+        .cover-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cover-intro {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cccccc;
+            max-width: 700px;
+        }
+
+        .cover-intro p {
+            margin-bottom: 20px;
+        }
+
+        /* Article Grid */
+        .articles-section {
+            padding: 80px 40px;
+            border-top: 1px solid var(--secondary-color);
+        }
+
+        .section-header {
+            max-width: 1200px;
+            margin: 0 auto 60px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            color: var(--muted-color);
+        }
+
+        .articles-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .article-card {
+            background: var(--secondary-color);
+            padding: 40px;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .article-card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+
+        .article-number {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            letter-spacing: 0.2em;
+            margin-bottom: 15px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            line-height: 1.3;
+        }
+
+        .article-excerpt {
+            color: var(--muted-color);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .article-author {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 1px solid var(--secondary-color);
+            color: var(--muted-color);
+            font-size: 0.85rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+            }
+
+            .cover-hero {
+                padding: 40px 20px;
+            }
+
+            .articles-section {
+                padding: 60px 20px;
+            }
+
+            .articles-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .article-card {
+                padding: 30px;
+            }
+
+            .cover-meta {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="nav-logo">ODD <span>MAGAZINE</span></a>
+        <a href="index.html" class="nav-back">← Back to Alphabet</a>
+    </nav>
+
+    <header class="cover-hero" id="cover-hero">
+        <div class="cover-content">
+            <p class="cover-label" id="cover-label">Issue A</p>
+            <h1 class="cover-title" id="cover-title">Architecture</h1>
+            <p class="cover-subtitle" id="cover-subtitle">Exploring the spaces we inhabit and the structures that shape our world.</p>
+            
+            <div class="cover-meta">
+                <span>📅 February 2026</span>
+                <span>📖 12 Articles</span>
+                <span>⏱ 45 min read</span>
+            </div>
+
+            <div class="cover-intro" id="cover-intro">
+                <p>From ancient monuments to futuristic skyscrapers, architecture defines the human experience. In this issue, we examine how buildings influence behavior, the rise of sustainable design, and the architects reimagining our cities for the future.</p>
+            </div>
+        </div>
+    </header>
+
+    <section class="articles-section">
+        <div class="section-header">
+            <h2 class="section-title">Featured Articles</h2>
+            <p class="section-subtitle">Selected stories from this issue</p>
+        </div>
+
+        <div class="articles-grid" id="articles-grid">
+            <!-- Articles will be populated by JavaScript -->
+        </div>
+    </section>
+
+    <footer>
+        <p>ODD MAGAZINE &copy; 2026</p>
+    </footer>
+
+    <script>
+        // Issue data
+        const issues = {
+            'A': {
+                title: 'Architecture',
+                subtitle: 'Exploring the spaces we inhabit and the structures that shape our world.',
+                intro: 'From ancient monuments to futuristic skyscrapers, architecture defines the human experience. In this issue, we examine how buildings influence behavior, the rise of sustainable design, and the architects reimagining our cities for the future.',
+                articles: [
+                    { number: '01', title: 'The Psychology of Space', excerpt: 'How ceiling height affects creativity and why open offices failed.', author: 'Sarah Chen' },
+                    { number: '02', title: 'Concrete Jungle', excerpt: 'The brutalist revival and why young architects are embracing raw materials.', author: 'Marcus Webb' },
+                    { number: '03', title: 'Vertical Cities', excerpt: 'As land becomes scarce, architects look up. The case for 500-story buildings.', author: 'Yuki Tanaka' },
+                    { number: '04', title: 'Sacred Geometry', excerpt: 'The mathematical patterns that appear across religious architecture worldwide.', author: 'Dr. Amara Okafor' }
+                ]
+            },
+            'B': {
+                title: 'Biology',
+                subtitle: 'The science of life in all its forms.',
+                intro: 'From the microscopic to the magnificent, biology reveals the intricate mechanisms of life. This issue explores CRISPR ethics, extremophiles, and the search for life beyond Earth.',
+                articles: [
+                    { number: '01', title: 'The Extremophiles', excerpt: 'Life in acid, boiling water, and radiation. What it teaches us about survival.', author: 'Dr. James Miller' },
+                    { number: '02', title: 'Editing Humanity', excerpt: 'CRISPR babies, gene drives, and the ethical frontier of genetic engineering.', author: 'Lisa Park' },
+                    { number: '03', title: 'The Wood Wide Web', excerpt: 'How trees communicate through fungal networks beneath our feet.', author: 'Dr. Suzanne Simard' },
+                    { number: '04', title: 'Synthetic Life', excerpt: 'Scientists are building organisms from scratch. What could go wrong?', author: 'Tomás Rivera' }
+                ]
+            },
+            'C': {
+                title: 'Cinema',
+                subtitle: 'The art and business of moving images.',
+                intro: 'Film shapes culture, reflects society, and transports us to other worlds. In this issue: the streaming wars, AI-generated movies, and the directors defining the new wave.',
+                articles: [
+                    { number: '01', title: 'The Algorithm\'s Cut', excerpt: 'How Netflix uses data to greenlight shows and why creators are worried.', author: 'Rachel Kim' },
+                    { number: '02', title: 'Indie Renaissance', excerptn: 'Small budgets, big visions. The filmmakers proving Hollywood wrong.', author: 'David Chen' },
+                    { number: '03', title: 'Virtual Production', excerpt: 'LED walls and real-time rendering are changing how movies get made.', author: 'Alex Thompson' },
+                    { number: '04', title: 'The Last Movie Theater', excerpt: 'Streaming killed the cinema star. Or did it?', author: 'Maria Garcia' }
+                ]
+            },
+            'D': {
+                title: 'Design',
+                subtitle: 'Form, function, and everything in between.',
+                intro: 'Good design is invisible. Bad design is everywhere. This issue examines the principles that separate them, from Dieter Rams to digital interfaces.',
+                articles: [
+                    { number: '01', title: 'The Invisible Interface', excerpt: 'Why the best technology disappears when you use it.', author: 'Jonny Ive' },
+                    { number: '02', title: 'Designing for Emotion', excerpt: 'How color, typography, and spacing influence how we feel.', author: 'Don Norman' },
+                    { number: '03', title: 'Sustainable Aesthetics', excerpt: 'Can beautiful objects also be good for the planet?', author: 'Stella McCartney' },
+                    { number: '04', title: 'The Anti-Design Movement', excerpt: 'Why some creators are embracing ugliness on purpose.', author: 'Zara Ali' }
+                ]
+            },
+            'T': {
+                title: 'Technology',
+                subtitle: 'Tools that transform civilization.',
+                intro: 'From the first stone axe to artificial intelligence, technology defines human progress. This issue explores the breakthroughs shaping our future.',
+                articles: [
+                    { number: '01', title: 'The Quantum Leap', excerpt: 'Quantum computers are here. What happens when they scale?', author: 'Dr. John Preskill' },
+                    { number: '02', title: 'Brain-Computer Interfaces', excerpt: 'Neuralink and competitors race to merge mind and machine.', author: 'Emily White' },
+                    { number: '03', title: 'The End of Coding', excerpt: 'AI is writing software. What happens to programmers?', author: 'Andrej Karpathy' },
+                    { number: '04', title: 'Fusion Finally', excerpt: 'After decades of promises, unlimited clean energy draws near.', author: 'Dr. Annie Kritcher' }
+                ]
+            }
+        };
+
+        // Default fallback
+        const defaultIssue = {
+            title: 'Exploration',
+            subtitle: 'Discovering the unknown and expanding horizons.',
+            intro: 'Every letter of the alphabet represents a different domain of human knowledge and creativity. Click through to explore each world.',
+            articles: [
+                { number: '01', title: 'Coming Soon', excerpt: 'This issue is currently in development. Check back soon for new content.', author: 'ODD Editorial' }
+            ]
+        };
+
+        // Get letter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const letter = urlParams.get('letter') || 'A';
+
+        // Get issue data
+        const issue = issues[letter] || defaultIssue;
+
+        // Update page
+        document.title = `ODD MAGAZINE - ${issue.title}`;
+        document.getElementById('cover-hero').setAttribute('data-letter', letter);
+        document.getElementById('cover-label').textContent = `Issue ${letter}`;
+        document.getElementById('cover-title').textContent = issue.title;
+        document.getElementById('cover-subtitle').textContent = issue.subtitle;
+        document.getElementById('cover-intro').innerHTML = `<p>${issue.intro}</p>`;
+
+        // Render articles
+        const articlesGrid = document.getElementById('articles-grid');
+        articlesGrid.innerHTML = issue.articles.map(article => `
+            <article class="article-card">
+                <p class="article-number">Article ${article.number}</p>
+                <h3 class="article-title">${article.title}</h3>
+                <p class="article-excerpt">${article.excerpt}</p>
+                <p class="article-author">By ${article.author}</p>
+            </article>
+        `).join('');
+    </script>
+</body>
+</html>
